@@ -4,11 +4,9 @@
 <h3><%= @game.player_1.name %>: <%= @game.player_1.hp %>HP</h3>
 <h3><%= @game.player_2.name %>: <%= @game.player_2.hp %>HP</h3>
 
+<h3><%= @game.current_turn.name %>'s turn</h3>
 
-<form action="/turn" method="post">
-  <input type="submit" name="turn" value="Player 1 Attack">
-</form>
 
-<form action="/turn" method="post">
-  <input type="submit" name="turn" value="Player 2 Attack">
+<form action="/attack" method="get">
+  <input type="submit" name="turn" value="Attack">
 </form>

@@ -25,27 +25,31 @@ class Battle < Sinatra::Base
     erb :play
   end
 
-  post '/turn' do
+  get '/attack' do
     @game = $game
-    turn = params[:turn]
-    if turn == "Player 1 Attack" 
-      @game.attack(@game.player_2)
-      redirect to '/attack1'
-    elsif turn == "Player 2 Attack"
-      @game.attack(@game.player_1)
-      redirect to '/attack2'
-    end
+    @game.attack(@game.player_2)
+    @game.switch_turns
+    erb :attack
   end
 
-  get '/attack1' do
-    @game = $game
-    erb :attack1
-  end
+  # post '/turn' do
+  #   @game = $game
+  #   @game.set_turn(params[:turn])
+  #   @game.player_attack
+  #   # turn = params[:turn]
+  #   # if turn == "Player 1 Attack" 
+  #   #   @game.attack(@game.player_2)
+  #   #   redirect to '/attack1'
+  #   # elsif turn == "Player 2 Attack"
+  #   #   @game.attack(@game.player_1)
+  #   #   redirect to '/attack2'
+  #   # end
+  # end
 
-  get '/attack2' do
-    @game = $game
-    erb :attack2
-  end
+  # get '/attack2' do
+  #   @game = $game
+  #   erb :attack2
+  # end
 
  # start the server if ruby file executed directly
  run! if app_file == $0
